@@ -1,22 +1,10 @@
-
-
-
-
-
 ```go
-message GetRequest {
+message SetRequest {
   Path prefix = 1;
-  repeated Path path = 2;
-  enum DataType {
-    ALL = 0;
-    CONFIG = 1;
-    STATE = 2;
-    OPERATIONAL = 3;
-  }
-  DataType type = 3;
-  Encoding encoding = 5;
-  repeated ModelData use_models = 6;
-  repeated gnmi_ext.Extension extension = 7;
+  repeated Path delete = 2;
+  repeated Update replace = 3;
+  repeated Update update = 4;
+  repeated gnmi_ext.Extension extension = 5;
 }
 ```
 
@@ -30,62 +18,30 @@ message Path {
 ```
 
 ```go
-message PathElem {
-  string name = 1;
-  map<string, string> key = 2;
+message Update {
+  Path path = 1;
+  Value value = 2 [deprecated=true];
+  TypedValue val = 3;
+  uint32 duplicates = 4;
 }
 ```
 
 ```go
-r := GetRequest{
-	Prefix: &Path{
-		Elem: []*PathElem{
-			{Name: "test1"},
-			{Name: "test2"},
-		},
-	},
-	Path: []*Path{
-		{
-			Elem: []*PathElem{
-				{Name: "test3"},
-				{Name: "test4"},
-			},
-		},
-		{
-			Elem: []*PathElem{
-				{Name: "test5"},
-				{Name: "test6"},
-			},
-		},
-	},
-}
-```
-
-```bash
-$ cat request.data | protoc --decode_raw
-1 {
-  3 {
-    1: "test1"
-  }
-  3 {
-    1: "test2"
-  }
-}
-2 {
-  3 {
-    1: "test3"
-  }
-  3 {
-    1: "test4"
-  }
-}
-2 {
-  3 {
-    1: "test5"
-  }
-  3 {
-    1: "test6"
+message TypedValue {
+  oneof value {
+    string string_val = 1;
+    int64 int_val = 2;
+    uint64 uint_val = 3;
+    bool bool_val = 4;
+    bytes bytes_val = 5;
+    float float_val = 6;
+    Decimal64 decimal_val = 7;
+    ScalarArray leaflist_val = 8;
+    google.protobuf.Any any_val = 9;
+    bytes json_val = 10;
+    bytes json_ietf_val = 11;
+    string ascii_val = 12;
+    bytes proto_bytes = 13;
   }
 }
 ```
-
