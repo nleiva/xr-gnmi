@@ -1,3 +1,5 @@
+## Proto
+
 ```go
 message GetRequest {
   Path prefix = 1;
@@ -30,6 +32,8 @@ message PathElem {
   map<string, string> key = 2;
 }
 ```
+
+## Go
 
 ```go
 r := GetRequest{

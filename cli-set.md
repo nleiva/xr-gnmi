@@ -3,7 +3,7 @@
 We will use the follwoing command for all the examples, we will only modify the content of the `test.proto` file.
 
 ```bash
-./gnmi_cli -set --address=mrstn-5502-2.cisco.com:57344 \
+$ ./gnmi_cli -set --address=mrstn-5502-2.cisco.com:57344 \
   -proto "$(cat test.proto)" \
   -with_user_pass \
   -insecure \
@@ -321,7 +321,7 @@ router bgp 7922
 
 ## Apendix
 
-```python
+```bash
 # pwd
 /usr/src/openconfig/public/release/models
 # pyang -f tree network-instance/openconfig-network-instance.yang -p ../

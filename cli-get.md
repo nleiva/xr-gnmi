@@ -58,9 +58,9 @@ encoding: 4
 type: 1
 ```
 
-Which is quivalent to
+Which is equivalent to
 
-```json
+```bash
 prefix {
     origin: "openconfig-network-instance"
   }
