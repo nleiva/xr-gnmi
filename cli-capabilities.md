@@ -1,4 +1,4 @@
-## Examples
+# Capabilities CLI
 
 We will use the follwoing command.
 
@@ -12,7 +12,7 @@ $ ./gnmi_cli --capabilities --address=mrstn-5502-2.cisco.com:57344 \
   -timeout=5s
 ```
 
-### Output
+## Output
 
 ```bash
 $ ./gnmi_cli --capabilities--address=mrstn-5502-2.cisco.com:57344 \

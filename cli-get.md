@@ -1,29 +1,5 @@
-## Constants
 
-Encoding
-
-```go
-const (
-	Encoding_JSON      Encoding = 0
-	Encoding_BYTES     Encoding = 1
-	Encoding_PROTO     Encoding = 2
-	Encoding_ASCII     Encoding = 3
-	Encoding_JSON_IETF Encoding = 4
-)
-```
-
-DataType
-
-```go
-const (
-	GetRequest_ALL    GetRequest_DataType = 0
-	GetRequest_CONFIG GetRequest_DataType = 1
-	GetRequest_STATE  GetRequest_DataType = 2
-	GetRequest_OPERATIONAL GetRequest_DataType = 3
-)
-```
-
-## Examples
+# Get CLI
 
 We will use the follwoing command for all the examples, we will only modify the content of the `test.proto` file.
 
@@ -38,9 +14,30 @@ We will use the follwoing command for all the examples, we will only modify the 
   -timeout=5s
 ```
 
-### Single path
+## Constants
 
-#### test.proto
+Encoding
+
+```go
+JSON        = 0
+BYTES       = 1
+PROTO       = 2
+ASCII       = 3
+JSON_IETF   = 4
+```
+
+DataType
+
+```go
+ALL         = 0
+CONFIG      = 1
+STATE       = 2
+OPERATIONAL = 3
+```
+
+## Single path
+
+### test.proto
 
 ```json
 prefix: <
@@ -76,7 +73,7 @@ encoding: 4
 type: 1
 ```
 
-#### Output
+### Output
 
 ```bash
 $ ./gnmi_cli -get --address=mrstn-5502-2.cisco.com:57344 \
@@ -112,9 +109,9 @@ error: <
 >
 ```
 
-### Two paths on a request
+## Two paths on a request
 
-#### test.proto
+### test.proto
 
 ```json
 prefix: <
@@ -148,7 +145,7 @@ encoding: 4
 type: 1
 ```
 
-#### Output
+### Output
 
 ```bash
 $ ./gnmi_cli -get --address=mrstn-5502-2.cisco.com:57344 \
@@ -199,9 +196,9 @@ error: <
 >
 ```
 
-### More specific path (only IPv6 info)
+## More specific path (only IPv6 info)
 
-#### test.proto
+### test.proto
 
 
 ```json
@@ -237,7 +234,7 @@ encoding: 4
 type: 1
 ```
 
-#### Output
+### Output
 
 ```bash
 $ ./gnmi_cli -get --address=mrstn-5502-2.cisco.com:57344 \
@@ -278,94 +275,4 @@ notification: <
 >
 error: <
 >
-```
-
-## Appendix
-
-```bash
-module: openconfig-interfaces
-  +--rw interfaces
-     +--rw interface* [name]
-        +--rw name             -> ../config/name
-        +--rw config
-        |  +--rw name?            string
-        |  +--rw type             identityref
-        |  +--rw mtu?             uint16
-        |  +--rw loopback-mode?   boolean
-        |  +--rw description?     string
-        |  +--rw enabled?         boolean
-        +--ro state
-        |  +--ro name?            string
-        |  +--ro type             identityref
-        |  +--ro mtu?             uint16
-        |  +--ro loopback-mode?   boolean
-        |  +--ro description?     string
-        |  +--ro enabled?         boolean
-        |  +--ro ifindex?         uint32
-        |  +--ro admin-status     enumeration
-        |  +--ro oper-status      enumeration
-        |  +--ro last-change?     oc-types:timeticks64
-        |  +--ro logical?         boolean
-        |  +--ro counters
-        |     +--ro in-octets?             oc-yang:counter64
-        |     +--ro in-pkts?               oc-yang:counter64
-        |     +--ro in-unicast-pkts?       oc-yang:counter64
-        |     +--ro in-broadcast-pkts?     oc-yang:counter64
-        |     +--ro in-multicast-pkts?     oc-yang:counter64
-        |     +--ro in-discards?           oc-yang:counter64
-        |     +--ro in-errors?             oc-yang:counter64
-        |     +--ro in-unknown-protos?     oc-yang:counter64
-        |     +--ro in-fcs-errors?         oc-yang:counter64
-        |     +--ro out-octets?            oc-yang:counter64
-        |     +--ro out-pkts?              oc-yang:counter64
-        |     +--ro out-unicast-pkts?      oc-yang:counter64
-        |     +--ro out-broadcast-pkts?    oc-yang:counter64
-        |     +--ro out-multicast-pkts?    oc-yang:counter64
-        |     +--ro out-discards?          oc-yang:counter64
-        |     +--ro out-errors?            oc-yang:counter64
-        |     +--ro carrier-transitions?   oc-yang:counter64
-        |     +--ro last-clear?            oc-types:timeticks64
-        +--rw hold-time
-        |  +--rw config
-        |  |  +--rw up?     uint32
-        |  |  +--rw down?   uint32
-        |  +--ro state
-        |     +--ro up?     uint32
-        |     +--ro down?   uint32
-        +--rw subinterfaces
-           +--rw subinterface* [index]
-              +--rw index     -> ../config/index
-              +--rw config
-              |  +--rw index?         uint32
-              |  +--rw description?   string
-              |  +--rw enabled?       boolean
-              +--ro state
-                 +--ro index?          uint32
-                 +--ro description?    string
-                 +--ro enabled?        boolean
-                 +--ro name?           string
-                 +--ro ifindex?        uint32
-                 +--ro admin-status    enumeration
-                 +--ro oper-status     enumeration
-                 +--ro last-change?    oc-types:timeticks64
-                 +--ro logical?        boolean
-                 +--ro counters
-                    +--ro in-octets?             oc-yang:counter64
-                    +--ro in-pkts?               oc-yang:counter64
-                    +--ro in-unicast-pkts?       oc-yang:counter64
-                    +--ro in-broadcast-pkts?     oc-yang:counter64
-                    +--ro in-multicast-pkts?     oc-yang:counter64
-                    +--ro in-discards?           oc-yang:counter64
-                    +--ro in-errors?             oc-yang:counter64
-                    +--ro in-unknown-protos?     oc-yang:counter64
-                    +--ro in-fcs-errors?         oc-yang:counter64
-                    +--ro out-octets?            oc-yang:counter64
-                    +--ro out-pkts?              oc-yang:counter64
-                    +--ro out-unicast-pkts?      oc-yang:counter64
-                    +--ro out-broadcast-pkts?    oc-yang:counter64
-                    +--ro out-multicast-pkts?    oc-yang:counter64
-                    +--ro out-discards?          oc-yang:counter64
-                    +--ro out-errors?            oc-yang:counter64
-                    +--ro carrier-transitions?   oc-yang:counter64
-                    +--ro last-clear?            oc-types:timeticks64
 ```
