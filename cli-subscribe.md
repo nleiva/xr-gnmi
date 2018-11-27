@@ -3,7 +3,7 @@
 We will use the follwoing command for all the examples, we will only modify the content of the `test.proto` file.
 
 ```bash
-./gnmi_cli --address=mrstn-5502-2.cisco.com:57344 \
+$ ./gnmi_cli --address=mrstn-5502-2.cisco.com:57344 \
   -proto "$(cat test.proto)" \
   -with_user_pass \
   -insecure \

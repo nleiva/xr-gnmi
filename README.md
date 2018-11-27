@@ -7,12 +7,9 @@
 - [Get](cli-get.md)
 - [Subscribe](cli-subscribe.md)
 
-## gNMI proto and Go generated code
+## Google's gNMI Telemetry Collector
 
-- [Capabilities](go-capabilities.md)
-- [Set](go-set.md)
-- [Get](go-get.md)
-- [Subscribe](go-subscribe.md)
+- [Telemetry](telemetry.md)
 
 ## Reference
 
@@ -20,3 +17,14 @@
 - gNMI [Protobuf IDL specification](https://github.com/openconfig/gnmi/blob/master/proto/gnmi/gnmi.proto)
 - gNMI [Go generated code](https://github.com/openconfig/gnmi/blob/master/proto/gnmi/gnmi.pb.go)
 - gNMI [CLI client](https://github.com/openconfig/gnmi/tree/master/cmd/gnmi_cli)
+- gNMI [Collector](https://github.com/openconfig/gnmi/tree/master/cmd/gnmi_collector)
+- [gNxI Tools](https://github.com/google/gnxi)
+
+## Apendix
+
+### gNMI proto and Go generated code
+
+- [Capabilities](go-capabilities.md)
+- [Set](go-set.md)
+- [Get](go-get.md)
+- [Subscribe](go-subscribe.md)
