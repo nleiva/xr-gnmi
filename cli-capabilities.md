@@ -1,6 +1,6 @@
 # Capabilities CLI
 
-We will use the follwoing command.
+We will use the following command.
 
 ```bash
 $ ./gnmi_cli --capabilities --address=mrstn-5502-2.cisco.com:57344 \
@@ -9,6 +9,15 @@ $ ./gnmi_cli --capabilities --address=mrstn-5502-2.cisco.com:57344 \
   -ca_crt=ca.cert \
   -client_crt=ems.pem \
   -client_key=ems.key \
+  -timeout=5s
+```
+
+If you don't want to validate the certificate, you probably don't need `ca_crt`. Similarly, if you are not using mutual authentication, `client_crt` and `client_key` might not be requiered so the command below should also work.
+
+```bash
+./gnmi_cli --capabilities --address=mrstn-5502-2.cisco.com:57344 \
+  -with_user_pass \
+  -insecure \
   -timeout=5s
 ```
 
